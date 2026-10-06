@@ -1,0 +1,4 @@
+Usage: token-report [--days N]
+
+Prints the token usage rollup table.
+Output is written to stdout.

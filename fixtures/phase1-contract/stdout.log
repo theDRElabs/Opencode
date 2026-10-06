@@ -1,0 +1,4 @@
+A: exit=0 lane=alignment
+B: exit=0 lane=implement-direct
+C: exit=0 lane=afk-implement
+LOG: /tmp/opencode/phase1-fixture-run/phase1-fixture.jsonl
