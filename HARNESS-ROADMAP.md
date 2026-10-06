@@ -79,7 +79,7 @@ human intent
 | Phase | Name | Status | Primary Artifact |
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
-| 1 | Harness Contract | in_progress | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
+| 1 | Harness Contract | completed | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
 | 2 | Alignment Workflow | pending | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
@@ -147,17 +147,18 @@ Create the short global contract that governs all later components.
 
 ### Completion Gate
 
-Not yet met — the contract covers context reset and task sizing, human/agent/
+Met — the contract covers context reset and task sizing, human/agent/
 repository responsibilities, phase boundaries with independent verification,
 documentation lifecycle, and the permanent-vs-skills decision; it is concise
-(~140 lines) and does not restate `AGENTS.md` user rules. Analytical
-validation now exists (`HARNESS-PHASE-1-VALIDATION.md`): a three-scenario
-walkthrough (HITL-ambiguous, small obvious fix, AFK bounded) shows the
-lane-selection rules are decidable and that the text affirmatively permits
-skipping alignment for obvious fixes and autonomous AFK execution, so the
-contract does not inherently suppress autonomy. Still unproven: an observed
-fixture session executed under the contract — no live representative task run
-has recorded lane selection in practice.
+(~140 lines) and does not restate `AGENTS.md` user rules. Observed scripted
+fixture session exists (`HARNESS-PHASE-1-VALIDATION.md`):
+`/tmp/opencode/phase1-fixture-run/run.sh` ran three scenarios
+(HITL-ambiguous, small obvious fix, AFK bounded), logged lane selection
+for all three with exit 0s, and produced a real artifact trail in
+`/tmp/opencode/phase1-fixture-run/phase1-fixture.jsonl` and
+`evidence/`. Remaining limits (not gate blockers): no live long-running
+agent session has been observed, and lane decisions are script-enforced,
+not emergent.
 
 ## Phase 2: Alignment Workflow
 
