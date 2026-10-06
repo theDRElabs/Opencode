@@ -79,7 +79,7 @@ human intent
 | Phase | Name | Status | Primary Artifact |
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
-| 1 | Harness Contract | in_progress | `HARNESS-CONTRACT.md` |
+| 1 | Harness Contract | in_progress | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
 | 2 | Alignment Workflow | pending | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
@@ -150,9 +150,14 @@ Create the short global contract that governs all later components.
 Not yet met — the contract covers context reset and task sizing, human/agent/
 repository responsibilities, phase boundaries with independent verification,
 documentation lifecycle, and the permanent-vs-skills decision; it is concise
-(~140 lines) and does not restate `AGENTS.md` user rules. Still unproven:
-validation against representative tasks without suppressing normal autonomy —
-no fixture or representative task run has yet exercised the contract.
+(~140 lines) and does not restate `AGENTS.md` user rules. Analytical
+validation now exists (`HARNESS-PHASE-1-VALIDATION.md`): a three-scenario
+walkthrough (HITL-ambiguous, small obvious fix, AFK bounded) shows the
+lane-selection rules are decidable and that the text affirmatively permits
+skipping alignment for obvious fixes and autonomous AFK execution, so the
+contract does not inherently suppress autonomy. Still unproven: an observed
+fixture session executed under the contract — no live representative task run
+has recorded lane selection in practice.
 
 ## Phase 2: Alignment Workflow
 
