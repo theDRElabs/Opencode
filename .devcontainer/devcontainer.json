@@ -1,0 +1,5 @@
+{
+  "name": "Opencode",
+  "postStartCommand": "bash /workspaces/Opencode/.devcontainer/vnc/bootstrap.sh",
+  "remoteUser": "codespace"
+}
