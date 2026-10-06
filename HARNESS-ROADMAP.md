@@ -79,7 +79,7 @@ human intent
 | Phase | Name | Status | Primary Artifact |
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
-| 1 | Harness Contract | pending | `HARNESS-CONTRACT.md` |
+| 1 | Harness Contract | in_progress | `HARNESS-CONTRACT.md` |
 | 2 | Alignment Workflow | pending | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
@@ -147,8 +147,12 @@ Create the short global contract that governs all later components.
 
 ### Completion Gate
 
-The contract is concise, non-duplicative, compatible with current OpenCode rules,
-and validated against representative tasks without suppressing normal autonomy.
+Not yet met — the contract covers context reset and task sizing, human/agent/
+repository responsibilities, phase boundaries with independent verification,
+documentation lifecycle, and the permanent-vs-skills decision; it is concise
+(~140 lines) and does not restate `AGENTS.md` user rules. Still unproven:
+validation against representative tasks without suppressing normal autonomy —
+no fixture or representative task run has yet exercised the contract.
 
 ## Phase 2: Alignment Workflow
 

@@ -10,6 +10,14 @@ Turn human intent into useful, maintainable, verified software while keeping
 humans responsible for intent, tradeoffs, architecture, taste, security-sensitive
 decisions, and final acceptance.
 
+## Permanent vs Pull-Based Instructions
+
+- `AGENTS.md` keeps the permanent global rules: host context, communication
+  requirements, build pipeline, fixture intake, graph-memory, and governance.
+- Specialized procedures (alignment, PRD writing, issue contracts, TDD,
+  independent review, manual QA, orchestration) live in pull-based skills
+  loaded on demand, not in always-loaded context.
+
 ## Default Lifecycle
 
 For substantial work, use this lifecycle:
