@@ -152,11 +152,11 @@ repository responsibilities, phase boundaries with independent verification,
 documentation lifecycle, and the permanent-vs-skills decision; it is concise
 (~140 lines) and does not restate `AGENTS.md` user rules. Observed scripted
 fixture session exists (`HARNESS-PHASE-1-VALIDATION.md`):
-`/tmp/opencode/phase1-fixture-run/run.sh` ran three scenarios
+`fixtures/phase1-contract/run.sh` ran three scenarios
 (HITL-ambiguous, small obvious fix, AFK bounded), logged lane selection
 for all three with exit 0s, and produced a real artifact trail in
-`/tmp/opencode/phase1-fixture-run/phase1-fixture.jsonl` and
-`evidence/`. Remaining limits (not gate blockers): no live long-running
+fixtures/phase1-contract/phase1-fixture.jsonl and
+`fixtures/phase1-contract/evidence/`. Remaining limits (not gate blockers): no live long-running
 agent session has been observed, and lane decisions are script-enforced,
 not emergent.
 
