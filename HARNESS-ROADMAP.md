@@ -80,7 +80,7 @@ human intent
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
 | 1 | Harness Contract | completed | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
-| 2 | Alignment Workflow | pending | `grill-me` skill and command |
+| 2 | Alignment Workflow | in_progress | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
 | 5 | Project Feedback Contracts | pending | `HARNESS-PROJECT-FEEDBACK.md` and `HARNESS-PHASE-5-VALIDATION.md` |
@@ -176,6 +176,15 @@ Prevent silent requirement invention before substantial planning or coding.
 - Add an invocation command without granting implementation permissions.
 
 ### Completion Gate
+
+Not yet met. Implemented: `skills/grill-me/SKILL.md`, `commands/grill-me.md`,
+and `fixtures/phase2-alignment/` with five walkthrough transcripts
+(small-feature, ambiguous-data-change, api-integration, frontend-workflow,
+prototype-branch) graded by `run-validation.sh` (exit 0, five pass lines in
+`case-results.jsonl`); evidence in `HARNESS-PHASE-2-VALIDATION.md`. Remaining
+gap: the sessions are authored walkthroughs, not live agent runs — the gate
+wording requires fixture *sessions*, so a live `/grill-me` transcript per
+scenario type must exist before this phase can be marked completed.
 
 Fixture sessions for a small feature, ambiguous data change, API integration,
 frontend workflow, and bounded prototype branch surface important missing
