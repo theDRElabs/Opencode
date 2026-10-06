@@ -79,7 +79,7 @@ human intent
 | Phase | Name | Status | Primary Artifact |
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
-| 1 | Harness Contract | in_progress | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
+| 1 | Harness Contract | completed | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
 | 2 | Alignment Workflow | pending | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
@@ -147,17 +147,19 @@ Create the short global contract that governs all later components.
 
 ### Completion Gate
 
-Not yet met — the contract covers context reset and task sizing, human/agent/
+Met: the contract covers context reset and task sizing, human/agent/
 repository responsibilities, phase boundaries with independent verification,
 documentation lifecycle, and the permanent-vs-skills decision; it is concise
-(~140 lines) and does not restate `AGENTS.md` user rules. Analytical
-validation now exists (`HARNESS-PHASE-1-VALIDATION.md`): a three-scenario
-walkthrough (HITL-ambiguous, small obvious fix, AFK bounded) shows the
-lane-selection rules are decidable and that the text affirmatively permits
-skipping alignment for obvious fixes and autonomous AFK execution, so the
-contract does not inherently suppress autonomy. Still unproven: an observed
-fixture session executed under the contract — no live representative task run
-has recorded lane selection in practice.
+(~140 lines) and does not restate `AGENTS.md` user rules. Validated two
+ways: (1) an analytical walkthrough of the lane-selection rules against
+three representative scenarios (`HARNESS-PHASE-1-VALIDATION.md` § Contract
+rules exercised), and (2) observed live runs on 2026-10-06 against a
+throwaway fixture (`/tmp/opencode/phase1-fixture/`): an ambiguous HITL
+request was routed to alignment without implementation, a small obvious
+one-line fix was implemented directly with a passing check, and an AFK
+bounded `--json` issue was implemented with a deterministic check and
+independent-review gate noted (`HARNESS-PHASE-1-VALIDATION.md` § Observed
+live runs). No lane suppressed normal autonomy.
 
 ## Phase 2: Alignment Workflow
 
