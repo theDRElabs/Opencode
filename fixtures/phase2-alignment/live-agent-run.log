@@ -1,0 +1,161 @@
+[0m
+> build · fledge-alpha-free
+[0m→ [0mRead skills/grill-me/SKILL.md 
+> build · fledge-alpha-free
+# Grill Me — Simulated Alignment Interview
+
+**Feature request:** Add export-to-CSV to the dashboard table view.
+
+---
+
+## Q1 — User and job
+
+**Q: Who is the primary user of CSV export, and what outcome makes it successful for them?**
+- **Recommended:** Operations/analytics stakeholders who need to pull dashboard table data into spreadsheets for reporting or sharing — success is "I can get exactly the rows/columns currently visible as a correct CSV in one click."
+- Reason: Export features almost always serve offline analysis/sharing, and anchoring success to "what's visible" avoids scope creep into custom reports on day one.
+
+**A (simulated user):** Yes — internal analysts and ops leads. Success = one-click export of exactly what the table currently shows (filters, sort, columns), openable in Excel without mangled characters.
+
+✅ **DECIDED** — target users: internal analysts/ops leads; success: one-click export of the currently visible (filtered/sorted/columned) table as an Excel-compatible CSV.
+
+---
+
+## Q2 — Primary workflow
+
+**Q: What is the smallest end-to-end path from trigger to file?**
+- **Recommended:** A single "Export CSV" button in the table toolbar; click → browser downloads a `.csv` of the current view; no modal, no options.
+- Reason: Smallest viable path; options/modals can be added once usage justifies them.
+
+**A (simulated user):** Agreed. Button in the toolbar, immediate download, filename like `dashboard-table-YYYYMMDD.csv`. No email, no async job queue.
+
+✅ **DECIDED** — toolbar button → immediate browser download → `dashboard-table-YYYYMMDD.csv`. No modal, no share/email flow.
+
+---
+
+## Q3 — Boundaries
+
+**Q: Which scope boundaries should we draw?**
+- **Recommended:** In scope: exporting the current view only. Out of scope: server-side scheduled exports, PDF/Excel-native formats, custom column mapping, exporting more rows than the current view, deleted/soft-deleted rows.
+- Reason: Keeps the first version reversible and avoids hidden commitments on format and volume.
+
+**A (simulated user):** Agreed on all out-of-scopes. Also explicitly out: importing CSV back, export history/audit UI, cross-table combined exports.
+
+✅ **DECIDED** — scope = current view only. Non-goals recorded: scheduled exports, non-CSV formats, custom mapping, export-back/import, history UI, combined exports.
+
+---
+
+## Q4 — Failure and edge cases
+
+**Q: How should the export behave in empty, large, or failure scenarios?**
+- **Recommended:** Empty table → disabled button with tooltip (or export of headers only); large result sets → cap with a confirmation (e.g., >5,000 rows warns); generation failure → toast error message, no partial file.
+- Reason: Silent partial downloads are the worst UX; a clear cap prevents browser hangs.
+
+**A (simulated user):** Empty → export headers-only CSV with a toast "No rows to export"; >5,000 rows → confirm dialog warning about size/time; failure → error toast, no partial file; Unicode/quotes/newlines in cells handled by standard CSV escaping.
+
+✅ **DECIDED** — empty = headers + toast; large = confirm above 5,000 rows; failure = error toast, no partial file; standard CSV escaping for quotes/commas/newlines.
+
+---
+
+## Q5 — Data behavior
+
+**Q: Where does the exported data come from and what consistency guarantees apply?**
+- **Recommended:** Export reads from the same client-side data layer/query that renders the table, so it always matches what the user sees; no new persistence, retention, or migration concerns since the CSV is generated client-side and transient.
+- Reason: Using the rendered view as the source of truth makes "export what you see" trivially consistent and avoids a separate backend path.
+
+**A (simulated user):** Agreed — use the same query params as the visible table. No server storage of exports, no retention policy needed. Soft-deleted rows remain excluded, matching the table.
+
+✅ **DECIDED** — source of truth = same query as the rendered view; no persistence/retention/migration; soft-deleted rows excluded.
+
+---
+
+## Q6 — Security and permissions
+
+**Q: Who is allowed to export, and what data-sensitivity checks apply?**
+- **Recommended:** Same permission that allows viewing the table allows exporting it (no new role); if the dashboard contains PII columns, they are exported as-is only for authorized viewers — flag for a security review before launch if PII is present.
+- Reason: Export is a read operation, but it moves data off-platform, so it deserves an explicit permission decision even if it mirrors view access.
+
+**A (simulated user):** Mirror the view permission. No new audit log for v1 — but mark the absence of export auditing as `HITL` if compliance asks for it later. PII columns exist in some tables; export includes them per-row only for viewers already authorized to see those columns.
+
+✅ **DECIDED** — export gated by existing view permission; no new audit log in v1. ⚠️ **HITL** — export auditing requirement deferred to compliance review if requested.
+
+---
+
+## Q7 — Integrations
+
+**Q: Does export introduce any external service dependency?**
+- **Recommended:** None — generate the CSV client-side with a vetted library (e.g., Papa Parse or a small custom serializer) and trigger the download via a Blob URL. No external contract, timeout, retry, or idempotency concern.
+- Reason: Client-side generation avoids a new API contract entirely; the only dependency is a serializer library.
+
+**A (simulated user):** Agreed, client-side via a small serializer. If the table ever paginates from the server and "current view" means >fetched rows, that's a `RESEARCH` item — for v1 "current view" means the rows currently loaded in the client.
+
+✅ **DECIDED** — client-side serializer + Blob download; no new API. **RESEARCH** — server-paginated tables needing "export all matching rows, not just loaded ones" is explicitly deferred; trigger a bounded research spike if stakeholders later demand it.
+
+---
+
+## Q8 — Testing and acceptance
+
+**Q: What observable examples and automated checks define done?**
+- **Recommended:** Acceptance examples: (a) button exports exact visible rows in current sort/filter order; (b) quotes/commas/newlines/UTF-8 (e.g., names with accents) round-trip correctly in Excel; (c) empty state exports headers + toast; (d) >5,000-row confirm appears. Automated: unit tests for the CSV serializer, component test for button state, one E2E for the happy-path download. Manual QA: open in Excel/LibreOffice/Google Sheets.
+- Reason: Encoding correctness is the most common CSV bug and needs explicit examples; capping automated tests at serializer + one E2E keeps cost proportionate.
+
+**A (simulated user):** Agreed. Also: filename date format tested for UTC vs local — decided: use local date. Mobile/responsive is out of scope since the dashboard is desktop-only.
+
+✅ **DECIDED** — acceptance criteria as above; tests: serializer unit tests + button component test + one happy-path E2E; manual QA in Excel/LibreOffice/Sheets; filename uses local date; mobile out of scope.
+
+---
+
+## Q9 — Risks and unknowns
+
+**Q: What remains open and needs human judgment or a bounded branch?**
+- **Recommended:** Two items — (1) whether export auditing is required by compliance (HITL, already flagged); (2) whether "export all rows" beyond the currently loaded page is demanded (RESEARCH spike, bounded: one spike, ≤1 day, evidence = required backend endpoint shape). Everything else is reversible.
+- Reason: Naming owners now prevents silent scope expansion later.
+
+**A (simulated user):** Agreed. Both items accepted as flagged. Feature is reversible — client-only, behind no flag needed, but we can add a flag trivially if rollback is requested.
+
+✅ **DECIDED** — risks/unknowns recorded above; feature client-only and easily reversible.
+
+---
+
+# Alignment Record
+
+**Request:** Add export-to-CSV to the dashboard table view.
+**Target user:** Internal analysts and ops leads using the dashboard.
+
+## Primary workflow & success condition
+- Toolbar "Export CSV" button → immediate browser download of the currently visible table (same filters, sort, columns) → file `dashboard-table-YYYYMMDD.csv` (local date), openable in Excel without mangled characters.
+
+## Decisions and assumptions
+- `DECIDED` — No modal, no options, no email/queue. Scope = current view only.
+- `DECIDED` — Source of truth = same query/data layer rendering the table; no persistence, retention, or migration; soft-deleted rows excluded.
+- `DECIDED` — Client-side CSV generation (vetted serializer) + Blob download; no new API, timeouts, or retries.
+- `DECIDED` — Permissions mirror existing table-view permission; PII columns exported only to already-authorized viewers.
+- `DECIDED` — Local date in filename; desktop-only (mobile out of scope).
+- `ASSUMED` — Date in filename is local, not UTC (user confirmed, so upgraded to DECIDED).
+
+## Edge-case behavior
+- Empty table → headers-only CSV + toast "No rows to export".
+- >5,000 rows → confirmation dialog before export.
+- Failure → error toast, no partial file.
+- Escaping/encoding: standard CSV quoting, UTF-8, verified round-trip in Excel.
+
+## Security / integrations / data
+- No new role, no export audit log in v1 (HITL flagged).
+- No external service dependency.
+- `RESEARCH` (deferred spike) — "export all matching rows" beyond loaded rows for server-paginated tables: question = endpoint shape; budget ≤1 day; evidence = required API contract; unblocks only if stakeholders demand it.
+
+## Explicit non-goals
+- Scheduled/server-side exports, PDF/Excel formats, custom column mapping, CSV import/re-import, export history UI, cross-table exports, mobile layout, export auditing (pending HITL).
+
+## Testing & acceptance
+- Unit tests: CSV serializer (quoting, escaping, UTF-8, empty). Component test: button enabled/disabled and filename. One E2E: happy-path download. Manual QA: Excel, LibreOffice, Google Sheets.
+
+## Unresolved risks & owners
+- `HITL` — Export auditing requirement → compliance/security review if requested.
+- `RESEARCH` — Server-paginated "export all" → bounded spike, owner = feature team, only when demanded.
+- Reversible: client-only change; feature flag optional if rollback requested.
+
+**Stop conditions met:** all applicable areas decided/marked; workflow and success condition concrete; non-goals and risky boundaries recorded; unresolved items assigned to HITL/RESEARCH. Material items: no outstanding `ASSUMED` items — every line is DECIDED, HITL, or RESEARCH.
+
+**Handoff boundary:** This record may be confirmed and handed to `write-prd` on user confirmation. I have made no edits, created nothing, and authorized no implementation.
+
+If you want to adjust any decision, say so now; otherwise this record is ready for your confirmation.

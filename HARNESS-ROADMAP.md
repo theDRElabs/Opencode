@@ -181,17 +181,18 @@ Met — with a stated limit. Implemented: `skills/grill-me/SKILL.md`,
 `commands/grill-me.md`, and `fixtures/phase2-alignment/` with five walkthrough
 transcripts (small-feature, ambiguous-data-change, api-integration,
 frontend-workflow, prototype-branch) graded by `run-validation.sh` (exit 0,
-five pass lines in `case-results.jsonl`), plus a live simulated `/grill-me`
-session at `fixtures/phase2-alignment/live-transcript-sample.md` (2026-10-07,
-export-to-CSV request) that follows the skill rules verbatim — one question
-per turn, provisional recommendations with reasons, all required decision
-areas surfaced (user, workflow, boundaries, edge cases, data behavior,
-security, integrations, testing, risks), HITL/UNKNOWN items assigned to
-owners, explicit stop conditions, and a no-edit attestation — and passes the
-same structural grader contract. That session surfaces genuinely missing
-decisions (audit-log HITL, 10k-cap UNKNOWN, N/A data-lifecycle categories)
-without premature planning. Limit: it is a simulated live session reviewed
-against the skill, not an emergent real-agent run; the remaining four
+five pass lines in `case-results.jsonl`); a simulated session at
+`fixtures/phase2-alignment/live-transcript-sample.md`; and an **emergent
+real-agent run** at `fixtures/phase2-alignment/live-human-run.md`
+(2026-10-07, session `ses_ee85bf5a3ffeJVTaFQTbsagVBC`) in which a human was
+interviewed live in the TUI: 28 questions with options and the human's real
+choices, decision areas spanning platform, injection mechanism, engine,
+permissions, data/privacy, acceptance, and risks; an architecture downgrade
+surfaced and explicitly accepted (clipboard paste instead of literal typing);
+`ASSUMED`/`HITL` items assigned; an accidental-tap answer discarded and
+re-asked; an alignment record produced; and no planning or implementation
+performed. The emergent run closes the earlier gap. Limits: it is a single
+session (demonstrates the behavior once, not a rate), and the four remaining
 scenario types have authored transcripts only. Evidence in
 `HARNESS-PHASE-2-VALIDATION.md`.
 

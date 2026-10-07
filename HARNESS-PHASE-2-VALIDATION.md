@@ -65,12 +65,21 @@ explicit no-edit attestation.
   present, alignment record with labels, stop condition, turn/question count
   match 13/13, no-edit attestation). It is honest about being a simulated
   live session, not an emergent real-agent run.
-- The five authored sessions remain structural walkthroughs, not live agent
-  sessions; the grader is a structural check and does not observe emergent
-  model behavior.
-- Remaining gap (smaller): no genuinely emergent, un-authored agent session
-  has been recorded. Until one exists, assurance beyond "the skill rules can
-  be followed verbatim and surface missing decisions" is limited.
+- **Emergent real-agent run recorded 2026-10-07.** A human ran `/grill-me` live
+  in the TUI (session `ses_ee85bf5a3ffeJVTaFQTbsagVBC`, title "Grill Me Session").
+  The full transcript was extracted from the local session database into
+  `fixtures/phase2-alignment/live-human-run.md`: 28 questions asked through the
+  `question` tool, each with options and the human's actual choice, plus 4
+  assistant messages. The interview covered platform, injection mechanism, STT
+  engine, permissions, data/privacy, acceptance bar, and unresolved risks; it
+  flagged a real downgrade (clipboard-paste instead of true typing), recorded
+  `ASSUMED`/`HITL` items, handled an accidental-tap correction by discarding and
+  re-asking, wrote an alignment record, and explicitly did not plan or implement.
+  This is the previously-missing emergent evidence.
+- The five authored sessions remain structural walkthroughs; the grader remains a
+  structural check. They complement rather than replace the emergent run.
+- Residual limit: the emergent run is a single session, so it demonstrates the
+  behavior once rather than establishing a rate.
 - The skill and command files mirror `opencode-config` so the artifact is
   consistent with the installed configuration; no config change was made in
   this phase.
