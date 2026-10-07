@@ -81,7 +81,7 @@ human intent
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
 | 1 | Harness Contract | completed | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
 | 2 | Alignment Workflow | completed | `grill-me` skill, command, `HARNESS-PHASE-2-VALIDATION.md` |
-| 3 | Destination Documents | pending | `write-prd` skill and command |
+| 3 | Destination Documents | in_progress | `write-prd` skill, command, `HARNESS-PHASE-3-VALIDATION.md` |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
 | 5 | Project Feedback Contracts | pending | `HARNESS-PROJECT-FEEDBACK.md` and `HARNESS-PHASE-5-VALIDATION.md` |
 | 6 | TDD and Bounded Implementer | pending | TDD skill and implementer agent |
@@ -221,6 +221,28 @@ Turn aligned decisions into a bounded destination and definition of done.
 
 Generated fixtures preserve negative decisions, migration behavior, module
 boundaries, test expectations, and unresolved risks without excessive prose.
+
+Not yet met — artifact contract satisfied, evidence not. `skills/write-prd/SKILL.md`
+and `commands/write-prd.md` ported from the local `opencode-config` clone and
+adapted to this repo's contract (changes and old-machine checks in
+`HARNESS-PHASE-3-VALIDATION.md` PORT-NOTES); neither source file contained
+machine-specific paths. `fixtures/phase3-destination/run-validation.sh` exits 0
+with 7/7 cases: five scenario documents (small-feature, data-change,
+api-integration, frontend-workflow, prototype-branch) plus an unconfirmed-input
+refusal and a mutation control that proves the grader rejects a violating
+document. Gate wording result: the fixtures do preserve negative decisions,
+migration behavior, unknown module boundaries, test expectations, and unresolved
+risks, and stay inside a prose bound — but they are **authored walkthroughs, not
+generated ones**. No agent has produced a destination document on this machine,
+so the evidence speaks to the artifact contract, not to agent behavior. Remaining
+gap: one emergent `/write-prd` run against a real `grill-me` alignment record in
+a fresh context, graded by the same runner — which first requires installing the
+skill into `~/.config/opencode/` (currently only the four top-level documents are
+symlinked; `skills/` is not discovered, so `grill-me` is equally uninstalled).
+Secondary open item: the command
+declares `agent: destination-writer` (mirroring Phase 2's `agent: alignment`) but
+no `agent/` directory exists here, so the restricted permission boundary is
+undefined; port `agent/destination-writer.md` if that boundary is meant to bind.
 
 ## Phase 4: Backlog and Issue Contract
 
