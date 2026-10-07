@@ -80,7 +80,7 @@ human intent
 |---|---|---|---|
 | 0 | Current Harness Audit | completed | `HARNESS-AUDIT.md` |
 | 1 | Harness Contract | completed | `HARNESS-CONTRACT.md`, `HARNESS-PHASE-1-VALIDATION.md` |
-| 2 | Alignment Workflow | in_progress | `grill-me` skill and command |
+| 2 | Alignment Workflow | completed | `grill-me` skill and command |
 | 3 | Destination Documents | pending | `write-prd` skill and command |
 | 4 | Backlog and Issue Contract | pending | `prd-to-issues` skill and issue schema |
 | 5 | Project Feedback Contracts | pending | `HARNESS-PROJECT-FEEDBACK.md` and `HARNESS-PHASE-5-VALIDATION.md` |
