@@ -2,7 +2,7 @@
 
 - Session: `ses_ee85bf5a3ffeJVTaFQTbsagVBC` (title "Grill Me Session")
 - Exported 2026-10-07 from `~/.local/share/opencode/opencode.db` (`session_message` table)
-- Real interactive run: a human answered each question live in the TUI; the agent held the interview using the `question` tool. No steering, no authored transcript.
+- Real interactive run: a human answered in the TUI live; the agent held the interview using the `question` tool. No steering, no authored transcript. 28 question calls were made, of which 25 completed with a recorded choice (see the appendix).
 - Feature grilled: Android speech-to-text floating widget app.
 - Note: near the end the human said the last two answers were accidental taps; the agent discarded them and re-asked the permissions question.
 

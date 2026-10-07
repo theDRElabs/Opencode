@@ -1,9 +1,13 @@
 # Phase 2 Validation: Alignment Workflow (grill-me)
 
-Date: 2026-10-06 (updated 2026-10-07 with live transcript)
+Date: 2026-10-06 (updated 2026-10-07 with the emergent human run)
 Method: artifact creation plus a structural gate check over five recorded
-walkthrough transcripts, plus one live simulated `/grill-me` transcript
-(`fixtures/phase2-alignment/live-transcript-sample.md`).
+walkthrough transcripts; a simulated `/grill-me` transcript
+(`fixtures/phase2-alignment/live-transcript-sample.md`); and an emergent,
+human-driven `/grill-me` run in the TUI (session
+`ses_ee85bf5a3ffeJVTaFQTbsagVBC`) extracted from the local session database into
+`fixtures/phase2-alignment/live-human-run.md`, checked field-by-field against that
+database by an independent verifier.
 
 ## Artifacts
 
