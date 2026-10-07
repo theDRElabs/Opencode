@@ -436,3 +436,27 @@ Two things worth naming before you confirm:
 **One item is marked `ASSUMED`.** Rapid re-tapping the widget might strand the state machine, since the permission decision removed in-app guidance and there's no designed recovery path. It's noted rather than solved, and it'll surface during your manual end-to-end testing.
 
 I did not write a PRD, create issues, or plan implementation. Confirm the record, or tell me what to change, and hand off to `write-prd` only once you're satisfied.
+
+---
+
+# Appendix: non-question tool activity in the same session
+
+The [question block] entries above are only part of the session. Other tool calls
+recorded in `session_message` for `ses_ee85bf5a3ffeJVTaFQTbsagVBC`:
+
+| seq | Tool | Action | Assessment |
+|---|---|---|---|
+| 5 | shell | `ls -la` command dirs, `find ... -iname "*grill*"` | Skill discovery |
+| 16 | read + shell | read `commands/grill-me.md`, `ls -R skills/grill-me` | Skill loading |
+| 29 | read | read `skills/grill-me/SKILL.md` | Skill loading |
+| 272 | shell | `ls -la /home/codespace/.claude/memory/` + `cat MEMORY.md` | **Out of scope** — unrelated environment inspection during the alignment interview |
+| 281 | write | `docs/projects/stt-widget.md` | Wrote the alignment record (written before user confirmation) |
+
+Three of the 28 question-tool calls never rendered and therefore have no answer:
+seq 206 and seq 251 failed schema validation (`questions[0].header: Missing key`),
+seq 229 was dismissed by the user. So 25 of 28 questions carry a recorded human
+choice; 3 are `(not captured)` above.
+
+Five of the 28 questions (#10, #11, #12, #14, #25) offered options without a
+`(Recommended)` label, which does not satisfy `SKILL.md` rule 3 (recommended
+answer first). Disclosed as a real finding from this run.

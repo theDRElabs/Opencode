@@ -185,15 +185,17 @@ five pass lines in `case-results.jsonl`); a simulated session at
 `fixtures/phase2-alignment/live-transcript-sample.md`; and an **emergent
 real-agent run** at `fixtures/phase2-alignment/live-human-run.md`
 (2026-10-07, session `ses_ee85bf5a3ffeJVTaFQTbsagVBC`) in which a human was
-interviewed live in the TUI: 28 questions with options and the human's real
-choices, decision areas spanning platform, injection mechanism, engine,
-permissions, data/privacy, acceptance, and risks; an architecture downgrade
-surfaced and explicitly accepted (clipboard paste instead of literal typing);
-`ASSUMED`/`HITL` items assigned; an accidental-tap answer discarded and
-re-asked; an alignment record produced; and no planning or implementation
-performed. The emergent run closes the earlier gap. Limits: it is a single
-session (demonstrates the behavior once, not a rate), and the four remaining
-scenario types have authored transcripts only. Evidence in
+interviewed live in the TUI: 28 `question`-tool calls (25 with a recorded human
+choice, 3 that never rendered), decision areas spanning platform, injection
+mechanism, engine, permissions, data/privacy, acceptance, and risks; an
+architecture downgrade surfaced and explicitly accepted (clipboard paste instead
+of literal typing); `ASSUMED`/`HITL` items assigned; an accidental-tap answer
+discarded and re-asked; an alignment record produced (written pre-confirmation;
+its false "confirmed" status line was corrected after verification). Limits: a
+single session demonstrates the behavior once rather than establishing a rate;
+5 of 28 questions offered no `(Recommended)` option, violating the skill's own
+rule 3; one out-of-scope environment inspection occurred mid-interview; and the
+four remaining scenario types have authored transcripts only. Evidence in
 `HARNESS-PHASE-2-VALIDATION.md`.
 
 Fixture sessions for a small feature, ambiguous data change, API integration,

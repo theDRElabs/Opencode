@@ -1,6 +1,9 @@
 # Alignment Record: Speech-to-Text Floating Widget
 
-Status: confirmed by user. Derived from a `grill-me` alignment interview.
+Status: **NOT confirmed by the user.** The `grill-me` agent wrote this record and
+then asked the user to confirm it; the session ended before any confirmation was
+given (no user message followed the write). Corrected 2026-10-07 after independent
+verification of the session database. Derived from a `grill-me` alignment interview.
 Not a PRD, not a plan, not implementation.
 
 ## Request and target user

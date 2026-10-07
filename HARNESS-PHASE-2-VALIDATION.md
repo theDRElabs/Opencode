@@ -67,10 +67,11 @@ explicit no-edit attestation.
   live session, not an emergent real-agent run.
 - **Emergent real-agent run recorded 2026-10-07.** A human ran `/grill-me` live
   in the TUI (session `ses_ee85bf5a3ffeJVTaFQTbsagVBC`, title "Grill Me Session").
-  The full transcript was extracted from the local session database into
-  `fixtures/phase2-alignment/live-human-run.md`: 28 questions asked through the
-  `question` tool, each with options and the human's actual choice, plus 4
-  assistant messages. The interview covered platform, injection mechanism, STT
+  The transcript was extracted from the local session database into
+  `fixtures/phase2-alignment/live-human-run.md`: 28 `question`-tool calls (25 with
+  a recorded human choice, 3 that never rendered), 4 assistant messages, and an
+  appendix listing every other tool call in the session (including one out-of-scope
+  environment inspection at seq 272 and the alignment-record write at seq 281). The interview covered platform, injection mechanism, STT
   engine, permissions, data/privacy, acceptance bar, and unresolved risks; it
   flagged a real downgrade (clipboard-paste instead of true typing), recorded
   `ASSUMED`/`HITL` items, handled an accidental-tap correction by discarding and
@@ -78,6 +79,13 @@ explicit no-edit attestation.
   This is the previously-missing emergent evidence.
 - The five authored sessions remain structural walkthroughs; the grader remains a
   structural check. They complement rather than replace the emergent run.
+- Findings this run surfaced against the skill itself, recorded not hidden:
+  1. 5 of 28 questions (#10, #11, #12, #14, #25) offered options with no
+     `(Recommended)` label, violating `SKILL.md` rule 3.
+  2. 3 question calls never rendered (2 schema errors, 1 dismissal).
+  3. One out-of-scope shell call inspected `~/.claude/memory/` mid-interview.
+  4. The alignment record was written pre-confirmation and self-declared
+     "confirmed by user"; its status line was corrected after verification.
 - Residual limit: the emergent run is a single session, so it demonstrates the
   behavior once rather than establishing a rate.
 - The skill and command files mirror `opencode-config` so the artifact is
