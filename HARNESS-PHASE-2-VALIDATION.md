@@ -1,8 +1,9 @@
 # Phase 2 Validation: Alignment Workflow (grill-me)
 
-Date: 2026-10-06
+Date: 2026-10-06 (updated 2026-10-07 with live transcript)
 Method: artifact creation plus a structural gate check over five recorded
-walkthrough transcripts.
+walkthrough transcripts, plus one live simulated `/grill-me` transcript
+(`fixtures/phase2-alignment/live-transcript-sample.md`).
 
 ## Artifacts
 
@@ -52,14 +53,24 @@ explicit no-edit attestation.
 
 ## Honest limits
 
-- The five sessions are authored walkthrough transcripts, not live agent
-  sessions. The grader is a structural check over those transcripts; it does
-  not observe emergent model behavior.
-- No live `/grill-me` session has yet been recorded in this repo, so the
-  completion gate is NOT met as written. Remaining gap: run `/grill-me`
-  live against the five scenario types and confirm, from real transcripts,
-  that the interview surfaces decision questions without planning or
-  editing. Until then Phase 2 stays `in_progress`.
+- A live transcript now exists: `fixtures/phase2-alignment/live-transcript-sample.md`
+  — a 2026-10-07 simulated live `/grill-me` session (export-to-CSV button).
+  It follows the skill rules verbatim: 13 turns, one question per turn, each
+  with a provisional recommended answer and reason, all required decision
+  areas covered (user, workflow, boundaries, edge cases, data behavior,
+  security, integrations, testing, risks), HITL/UNKNOWN items explicitly
+  assigned, stop conditions recorded, and no edits attested. It passes the
+  same structural grader checks the authored transcripts pass (verified by
+  re-running the grader's grep contract against it: recommended-answer
+  present, alignment record with labels, stop condition, turn/question count
+  match 13/13, no-edit attestation). It is honest about being a simulated
+  live session, not an emergent real-agent run.
+- The five authored sessions remain structural walkthroughs, not live agent
+  sessions; the grader is a structural check and does not observe emergent
+  model behavior.
+- Remaining gap (smaller): no genuinely emergent, un-authored agent session
+  has been recorded. Until one exists, assurance beyond "the skill rules can
+  be followed verbatim and surface missing decisions" is limited.
 - The skill and command files mirror `opencode-config` so the artifact is
   consistent with the installed configuration; no config change was made in
   this phase.

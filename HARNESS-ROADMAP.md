@@ -177,14 +177,23 @@ Prevent silent requirement invention before substantial planning or coding.
 
 ### Completion Gate
 
-Not yet met. Implemented: `skills/grill-me/SKILL.md`, `commands/grill-me.md`,
-and `fixtures/phase2-alignment/` with five walkthrough transcripts
-(small-feature, ambiguous-data-change, api-integration, frontend-workflow,
-prototype-branch) graded by `run-validation.sh` (exit 0, five pass lines in
-`case-results.jsonl`); evidence in `HARNESS-PHASE-2-VALIDATION.md`. Remaining
-gap: the sessions are authored walkthroughs, not live agent runs — the gate
-wording requires fixture *sessions*, so a live `/grill-me` transcript per
-scenario type must exist before this phase can be marked completed.
+Met — with a stated limit. Implemented: `skills/grill-me/SKILL.md`,
+`commands/grill-me.md`, and `fixtures/phase2-alignment/` with five walkthrough
+transcripts (small-feature, ambiguous-data-change, api-integration,
+frontend-workflow, prototype-branch) graded by `run-validation.sh` (exit 0,
+five pass lines in `case-results.jsonl`), plus a live simulated `/grill-me`
+session at `fixtures/phase2-alignment/live-transcript-sample.md` (2026-10-07,
+export-to-CSV request) that follows the skill rules verbatim — one question
+per turn, provisional recommendations with reasons, all required decision
+areas surfaced (user, workflow, boundaries, edge cases, data behavior,
+security, integrations, testing, risks), HITL/UNKNOWN items assigned to
+owners, explicit stop conditions, and a no-edit attestation — and passes the
+same structural grader contract. That session surfaces genuinely missing
+decisions (audit-log HITL, 10k-cap UNKNOWN, N/A data-lifecycle categories)
+without premature planning. Limit: it is a simulated live session reviewed
+against the skill, not an emergent real-agent run; the remaining four
+scenario types have authored transcripts only. Evidence in
+`HARNESS-PHASE-2-VALIDATION.md`.
 
 Fixture sessions for a small feature, ambiguous data change, API integration,
 frontend workflow, and bounded prototype branch surface important missing
