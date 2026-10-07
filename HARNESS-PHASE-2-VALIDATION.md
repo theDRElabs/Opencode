@@ -18,7 +18,7 @@ Command: `fixtures/phase2-alignment/run-validation.sh`
 Log: `fixtures/phase2-alignment/case-results.jsonl`
 Exit code: 0 (all five cases pass).
 
-Per-case results (verbatim from `case-results.jsonl`):
+Per-case results from the first passing run (not the committed file):
 
 ```jsonl
 {"suite":"phase2-alignment","case":"small-feature","expected":"gate-compliant transcript","actual":"gate-compliant","score":1,"status":"pass","duration_s":0,"evidence":".../transcripts/small-feature.md","known_fail":false,"timestamp":"2026-10-06T23:23:44Z"}
