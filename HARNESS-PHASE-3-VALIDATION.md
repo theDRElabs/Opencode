@@ -105,7 +105,10 @@ permission resolution, fresh-context verification — see the source repo's
    in the contract describes.
 5. **Checkable acceptance criteria.** Added: each criterion must be checkable by
    someone who did not write it; "works", "is fast", and "handles errors" are
-   not criteria. The grader enforces this shape, so the skill had to name it.
+   not criteria. Corrected 2026-10-07 after independent verification: the grader
+   does NOT enforce this rule — replacing an entire Acceptance Criteria section
+   with exactly those three vague lines still passes. The rule is enforced by the
+   skill alone, not by the fixture runner.
 6. **Flaky-test rule, deferred not restated.** Added one line: a retry-dependent
    check is never acceptance, and a suspected flaky test is a tracked risk. The
    contract owns the rule (reproduce, N-run, quarantine, no retry-bumping); the
