@@ -111,5 +111,7 @@ here.
   (real file: `/workspaces/Opencode/HARNESS-CONTRACT.md`).
 - Control document for harness build phases:
   `~/.config/opencode/HARNESS-ROADMAP.md` (real file:
-  `/workspaces/Opencode/HARNESS-ROADMAP.md`). All phases are `pending` on this
-  instance — nothing has been built yet.
+  `/workspaces/Opencode/HARNESS-ROADMAP.md`). Read its phase tracker for current
+  status — do not assume. As of 2026-10-08: phases 0–2 `completed`, phase 3
+  `in_progress` (gate unmet: its fixtures are hand-authored, no emergent
+  `/write-prd` run exists), phases 4–23 `pending`.
