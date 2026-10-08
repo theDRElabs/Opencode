@@ -236,9 +236,12 @@ risks, and stay inside a prose bound — but they are **authored walkthroughs, n
 generated ones**. No agent has produced a destination document on this machine,
 so the evidence speaks to the artifact contract, not to agent behavior. Remaining
 gap: one emergent `/write-prd` run against a real `grill-me` alignment record in
-a fresh context, graded by the same runner — which first requires installing the
-skill into `~/.config/opencode/` (currently only the four top-level documents are
-symlinked; `skills/` is not discovered, so `grill-me` is equally uninstalled).
+a fresh context, graded by the same runner. That prerequisite is now satisfied
+(corrected 2026-10-08): `~/.config/opencode/skills/` and
+`~/.config/opencode/commands/` symlink `grill-me`, `write-prd`, and
+`graph-memory` into the layout OpenCode discovers, so both harness commands are
+invocable. The evidence gap above stands — installation was never what was
+missing.
 Secondary open item: the command
 declares `agent: destination-writer` (mirroring Phase 2's `agent: alignment`) but
 no `agent/` directory exists here, so the restricted permission boundary is

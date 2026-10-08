@@ -145,14 +145,18 @@ permission resolution, fresh-context verification — see the source repo's
   validation cites Android/Termux sessions, `opencode debug config` permission
   resolution, and session IDs that do not exist on this machine. None of that
   evidence is claimed here; the evidence below is what was actually run here.
-- **Neither skill is installed yet, so `/write-prd` cannot currently be invoked.**
-  `~/.config/opencode/` symlinks only `AGENTS.md`, `HARNESS-AUDIT.md`,
-  `HARNESS-CONTRACT.md`, and `HARNESS-ROADMAP.md`; there is no `skill/` or
-  `commands/` symlink, and this repo uses `skills/` (plural), which is not the
-  layout OpenCode discovers. This is a pre-existing Phase 2 gap — `grill-me` has
-  the same problem — and is recorded rather than fixed here, because wiring the
-  global config directory is a change to live configuration outside this phase's
-  scope. It is the practical prerequisite for the emergent run named below.
+- **Both skills are now installed.** Corrected 2026-10-08: an earlier revision of
+  this document recorded that neither skill was installed and that `/write-prd`
+  therefore could not be invoked. That was true when written and is no longer.
+  `~/.config/opencode/` now symlinks all three skills into the discovery layout
+  OpenCode actually reads:
+  `skills/grill-me`, `skills/write-prd`, `skills/graph-memory`, plus
+  `commands/grill-me.md` and `commands/write-prd.md`. Both harness commands are
+  invocable. `graph-memory` resolves to
+  `/workspaces/opencode-config/skills/graph-memory`, so it tracks that repo
+  directly rather than being ported here like the other two.
+  This clears the install prerequisite for the emergent run named below; the
+  evidence gap below is unchanged.
 
 ## Honest limits
 
